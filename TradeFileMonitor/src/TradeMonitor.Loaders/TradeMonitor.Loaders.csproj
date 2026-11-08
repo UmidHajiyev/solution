@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    CSV, TXT və XML loader-ləri. Bu layihə PLUGIN-dir: proqram onu kodda birbaşa istifadə etmir.
+    Hər build-dən sonra DLL proqramın "Plugins" qovluğuna kopyalanır (aşağıdakı Target).
+    Private=false: Contracts.dll plugin-in yanına kopyalanmır, proqramda o artıq var.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TradeMonitor.Contracts\TradeMonitor.Contracts.csproj" Private="false" />
+  </ItemGroup>
+
+  <Target Name="CopyToAppPluginsFolder" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="..\TradeMonitor.App\bin\$(Configuration)\net8.0-windows\Plugins" />
+  </Target>
+
+</Project>

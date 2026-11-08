@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    WPF proqramı (TradeMonitor.exe).
+    Loaders layihəsinə istinad yalnız onu əvvəlcə build etmək üçündür: ReferenceOutputAssembly=false
+    olduğu üçün kod loader class-larını birbaşa görmür, onları işləyərkən Plugins qovluğunda tapır.
+    appsettings.json exe-nin yanına kopyalanır.
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>TradeMonitor</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TradeMonitor.Contracts\TradeMonitor.Contracts.csproj" />
+    <ProjectReference Include="..\TradeMonitor.Loaders\TradeMonitor.Loaders.csproj" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
